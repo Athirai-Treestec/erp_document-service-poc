@@ -1,0 +1,7 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/DocumentService.ConsoleApp/DocumentService.ConsoleApp.csproj" />
+    <Project Path="src/DocumentService.Core/DocumentService.Core.csproj" />
+    <Project Path="src/DocumentService.Engines/DocumentService.Engines.csproj" />
+  </Folder>
+</Solution>

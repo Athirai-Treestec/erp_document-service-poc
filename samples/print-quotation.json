@@ -1,0 +1,39 @@
+
+{
+  "CompanyName": "Carl Stahl",
+  "CompanyAddress": "Dubai, UAE",
+  "Phone": "+971 4 1234567",
+  "Email": "sales@carlstahl.ae",
+
+  "CustomerName": "ABU DHABI NATIONAL PAPER MILL",
+  "ContactPerson": "John",
+  "OfferNo": "QN/2026/00068",
+  "OfferDate": "17/07/2026",
+
+  "Items": [
+    {
+      "SNo": 1,
+      "Description": "11MM DIA Wire Rope Sling",
+      "Qty": 2,
+      "Price": 250.00,
+      "Total": 500.00
+    },
+    {
+      "SNo": 2,
+      "Description": "Shackle",
+      "Qty": 4,
+      "Price": 35.00,
+      "Total": 140.00
+    }
+  ],
+
+  "SubTotal": "640.00",
+  "Vat": "32.00",
+  "GrandTotal": "672.00",
+  "AmountInWords": "Six Hundred Seventy Two Dirhams Only",
+  "Remarks": "Delivery within 7 working days.",
+
+  "Term1": "Prices are valid for 30 days.",
+  "Term2": "Payment: 100% before delivery.",
+  "Term3": "Goods once sold cannot be returned."
+}

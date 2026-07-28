@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{orderName}} - {{orderNo}}</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        .print-container {
+            width: 210mm;
+            height: 297mm;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            font-size: 12px;
+        }
+
+        /* Header Section */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #003366;
+            padding-bottom: 15px;
+        }
+
+        .company-info {
+            flex: 1;
+        }
+
+        .company-logo {
+            width: 80px;
+            height: 80px;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            font-size: 10px;
+            color: #999;
+        }
+
+        .company-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #003366;
+            margin-bottom: 5px;
+        }
+
+        .company-details {
+            font-size: 10px;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        .order-type {
+            text-align: right;
+            flex: 1;
+        }
+
+        .order-type-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #003366;
+            margin-bottom: 10px;
+        }
+
+        .order-no {
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+
+        .confidential-banner {
+            background-color: #ffcccc;
+            color: #cc0000;
+            padding: 5px 10px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 5px;
+            border: 1px solid #cc0000;
+        }
+
+        /* Top Info Section */
+        .top-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+            background: #f9f9f9;
+            padding: 12px;
+            border-radius: 4px;
+        }
+
+        .info-block {
+            font-size: 11px;
+        }
+
+        .info-label {
+            font-weight: bold;
+            color: #003366;
+            margin-bottom: 2px;
+        }
+
+        .info-value {
+            color: #333;
+            word-wrap: break-word;
+        }
+
+        /* Customer Section */
+        .customer-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .customer-block {
+            border: 1px solid #ddd;
+            padding: 12px;
+            background: #fafafa;
+        }
+
+        .section-title {
+            font-size: 12px;
+            font-weight: bold;
+            color: #003366;
+            background: #e8f0f7;
+            padding: 6px 8px;
+            margin-bottom: 8px;
+            border-left: 3px solid #003366;
+        }
+
+        .customer-text {
+            font-size: 11px;
+            line-height: 1.5;
+            color: #333;
+        }
+
+        /* Items Table */
+        .items-section {
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+        }
+
+        thead {
+            background-color: #003366;
+            color: white;
+        }
+
+        th {
+            padding: 10px 8px;
+            text-align: left;
+            font-size: 11px;
+            font-weight: bold;
+            border: 1px solid #003366;
+        }
+
+        td {
+            padding: 8px;
+            border: 1px solid #ddd;
+            font-size: 10px;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tbody tr:hover {
+            background-color: #f0f0f0;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        /* Service-Based Items */
+        .service-items-table td,
+        .service-items-table th {
+            padding: 10px 8px;
+            font-size: 10px;
+        }
+
+        /* Footer Section */
+        .footer-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+
+        .terms-box {
+            border: 1px solid #ddd;
+            padding: 10px;
+            background: #fafafa;
+            font-size: 10px;
+            line-height: 1.4;
+        }
+
+            .terms-box strong {
+                color: #003366;
+            }
+
+        /* Totals Section */
+        .totals-section {
+            margin-left: auto;
+            width: 300px;
+        }
+
+        .total-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding: 6px 0;
+            border-bottom: 1px solid #ddd;
+            font-size: 11px;
+        }
+
+            .total-row.highlight {
+                background-color: #e8f0f7;
+                font-weight: bold;
+                padding: 8px;
+                border: 1px solid #003366;
+                color: #003366;
+            }
+
+        .total-label {
+            text-align: left;
+        }
+
+        .total-value {
+            text-align: right;
+        }
+
+        /* Amount in Words */
+        .amount-in-words {
+            background: #e8f0f7;
+            border: 1px solid #003366;
+            padding: 10px;
+            margin: 15px 0;
+            font-size: 11px;
+            font-weight: bold;
+            color: #003366;
+        }
+
+        /* QR Code Section */
+        .qr-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #ddd;
+        }
+
+        .qr-code {
+            width: 100px;
+            height: 100px;
+            border: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 9px;
+            color: #999;
+            background: #f9f9f9;
+        }
+
+        .signature-block {
+            text-align: right;
+        }
+
+        .signature-line {
+            width: 150px;
+            border-top: 1px solid #333;
+            margin-bottom: 3px;
+            text-align: center;
+        }
+
+        .signature-text {
+            font-size: 10px;
+            color: #666;
+        }
+
+        /* Conditional Sections */
+        .product-section,
+        .service-section {
+            margin-bottom: 20px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+                margin: 0;
+                padding: 0;
+            }
+
+            .print-container {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+                box-shadow: none;
+                page-break-after: always;
+            }
+
+            .page-break {
+                page-break-after: always;
+                margin-bottom: 20px;
+            }
+
+            table {
+                page-break-inside: avoid;
+            }
+
+            thead {
+                display: table-header-group;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 800px) {
+            .print-container {
+                width: 100%;
+                height: auto;
+                padding: 10px;
+            }
+
+            .top-info {
+                grid-template-columns: 1fr;
+            }
+
+            .customer-section {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-section {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="print-container">
+        <!-- Header Section -->
+        <div class="header">
+            <div class="company-info">
+                <div class="company-logo">
+                    {{#if logoUrl}}
+                    <img src="{{logoUrl}}" alt="Company Logo" style="width: 100%; height: 100%; object-fit: contain;">
+                    {{else}}
+                    LOGO
+                    {{/if}}
+                </div>
+                <div class="company-name">{{companyName}}</div>
+                <div class="company-details">
+                    {{companyAddress1}}{{#if companyAddress2}}<br>{{companyAddress2}}{{/if}}<br>
+                    {{#if trnNumber}}TRN: {{trnNumber}}<br>{{/if}}
+                    {{#if businessEntity}}Entity: {{businessEntity}}{{/if}}
+                </div>
+            </div>
+
+            <div class="order-type">
+                <div class="order-type-title">{{orderName}}</div>
+                <div class="order-no">
+                    <strong>Order No:</strong> {{orderNo}}
+                </div>
+                <div class="order-no">
+                    <strong>Date:</strong> {{orderDate}}
+                </div>
+                {{#if confidentialText}}
+                <div class="confidential-banner">{{confidentialText}}</div>
+                {{/if}}
+            </div>
+        </div>
+
+        <!-- Top Information Section -->
+        <div class="top-info">
+            <div class="info-block">
+                <div class="info-label">Currency</div>
+                <div class="info-value">{{currency}}</div>
+            </div>
+            <div class="info-block">
+                <div class="info-label">Delivery Date</div>
+                <div class="info-value">{{deliveryDate}}</div>
+            </div>
+            <div class="info-block">
+                <div class="info-label">Expected Delivery</div>
+                <div class="info-value">{{expDeliveryDate}}</div>
+            </div>
+        </div>
+
+        <!-- Customer Information Section -->
+        <div class="customer-section">
+            <div class="customer-block">
+                <div class="section-title">Bill To / Sold To</div>
+                <div class="customer-text">
+                    <strong>{{customerName}}</strong><br>
+                    {{#if address}}{{address}}<br>{{/if}}
+                    {{#if customerVatNumber}}VAT No: {{customerVatNumber}}<br>{{/if}}
+                    {{#if customerRef}}Reference: {{customerRef}}{{/if}}
+                </div>
+            </div>
+
+            <div class="customer-block">
+                <div class="section-title">Deliver To</div>
+                <div class="customer-text">
+                    {{#if customerDeliveryLocation}}
+                    <strong>{{customerDeliveryLocation}}</strong><br>
+                    {{/if}}
+                    {{#if customerDeliveryLocationAddress}}
+                    {{customerDeliveryLocationAddress}}<br>
+                    {{/if}}
+                    {{#if comments}}
+                    <strong>Comments:</strong> {{comments}}
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+
+        <!-- Items Section -->
+        <div class="items-section">
+            <div class="section-title">Order Items</div>
+
+            {{#unless isServiceBased}}
+            <!-- Product-Based Items Table -->
+            <table class="product-items-table">
+                <thead>
+                    <tr>
+                        <th style="width: 5%;">S.No.</th>
+                        <th style="width: 30%;">Item Description</th>
+                        <th style="width: 12%;">Item Code</th>
+                        <th style="width: 8%;">Qty</th>
+                        <th style="width: 8%;">Unit</th>
+                        <th style="width: 12%; text-align: right;">Unit Price</th>
+                        <th style="width: 12%; text-align: right;">Sub Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each items}}
+                    <tr>
+                        <td class="text-center">{{@index}}</td>
+                        <td>
+                            {{itemDescription}}
+                            {{#if brand}}<br><small><strong>Brand:</strong> {{brand}}</small>{{/if}}
+                            {{#if packing}}<br><small><strong>Packing:</strong> {{packing}}</small>{{/if}}
+                        </td>
+                        <td>{{itemCode}}</td>
+                        <td class="text-center">{{orderQty}}</td>
+                        <td class="text-center">{{unitName}}</td>
+                        <td class="text-right">{{unitPrice}}</td>
+                        <td class="text-right"><strong>{{subTotal}}</strong></td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            {{else}}
+            <!-- Service-Based Items Table -->
+            <table class="service-items-table">
+                <thead>
+                    <tr>
+                        <th style="width: 5%;">S.No.</th>
+                        <th style="width: 35%;">Service Description</th>
+                        <th style="width: 15%;">Scope</th>
+                        <th style="width: 12%; text-align: right;">Unit Price</th>
+                        <th style="width: 12%; text-align: right;">Sub Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each items}}
+                    <tr>
+                        <td class="text-center">{{@index}}</td>
+                        <td>
+                            {{itemDescription}}
+                            {{#if scopeOfWork}}<br><small>{{scopeOfWork}}</small>{{/if}}
+                        </td>
+                        <td>{{scopeOfWork}}</td>
+                        <td class="text-right">{{unitPrice}}</td>
+                        <td class="text-right"><strong>{{subTotal}}</strong></td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            {{/unless}}
+        </div>
+
+        <!-- Product-Specific Terms Section -->
+        {{#unless isServiceBased}}
+        <div class="product-section">
+            <div class="footer-section">
+                <div class="terms-box">
+                    <strong>Delivery Terms</strong><br>
+                    {{#if deliveryTerms}}{{deliveryTerms}}{{else}}As per agreement{{/if}}
+                </div>
+                <div class="terms-box">
+                    <strong>Payment Terms</strong><br>
+                    {{#if paymentTerms}}{{paymentTerms}}{{else}}Net 30 days{{/if}}
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <div class="terms-box">
+                    <strong>Inspection</strong><br>
+                    {{#if inspection}}{{inspection}}{{else}}As per standard quality checks{{/if}}
+                </div>
+                <div class="terms-box">
+                    <strong>Price Basis & Validity</strong><br>
+                    {{#if priceBasis}}{{priceBasis}}<br>{{/if}}
+                    {{#if validity}}Valid Till: {{validity}}{{/if}}
+                </div>
+            </div>
+        </div>
+        {{/unless}}
+
+        <!-- Service-Specific Terms Section -->
+        {{#if isServiceBased}}
+        <div class="service-section">
+            <div class="footer-section">
+                <div class="terms-box">
+                    <strong>Commencement of Job</strong><br>
+                    {{#if commencementOfJob}}{{commencementOfJob}}{{else}}As per schedule{{/if}}
+                </div>
+                <div class="terms-box">
+                    <strong>Service Validity</strong><br>
+                    {{#if serviceValidity}}{{serviceValidity}}{{else}}12 months{{/if}}
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <div class="terms-box">
+                    <strong>Location / Site Details</strong><br>
+                    {{#if location}}{{location}}{{else}}Client specified location{{/if}}
+                </div>
+                <div class="terms-box">
+                    <strong>Site Contact</strong><br>
+                    {{#if siteContact}}{{siteContact}}{{else}}To be confirmed{{/if}}
+                </div>
+            </div>
+
+            {{#if termsAndCondition}}
+            <div class="terms-box" style="grid-column: 1 / -1;">
+                <strong>Terms and Conditions</strong><br>
+                {{termsAndCondition}}
+            </div>
+            {{/if}}
+        </div>
+        {{/if}}
+
+        <!-- General Terms Section -->
+        <div class="footer-section">
+            <div class="terms-box">
+                <strong>Freight</strong><br>
+                {{#if freight}}{{freight}}{{else}}As per agreement{{/if}}
+            </div>
+            <div class="terms-box">
+                <strong>Additional Notes</strong><br>
+                {{#if comments}}{{comments}}{{else}}---{{/if}}
+            </div>
+        </div>
+
+        <!-- Totals Section -->
+        <div style="display: flex; justify-content: flex-end; margin-top: 20px;">
+            <div class="totals-section">
+                <div class="total-row">
+                    <div class="total-label">Subtotal</div>
+                    <div class="total-value">{{subtotal}}</div>
+                </div>
+
+                {{#if totalDiscount}}
+                <div class="total-row">
+                    <div class="total-label">Total Discount</div>
+                    <div class="total-value">-{{totalDiscount}}</div>
+                </div>
+                {{/if}}
+
+                <div class="total-row">
+                    <div class="total-label">VAT {{vatPercentage}}%</div>
+                    <div class="total-value">{{vatAmount}}</div>
+                </div>
+
+                {{#if freight}}
+                <div class="total-row">
+                    <div class="total-label">Freight</div>
+                    <div class="total-value">{{freight}}</div>
+                </div>
+                {{/if}}
+
+                <div class="total-row highlight">
+                    <div class="total-label">Grand Total</div>
+                    <div class="total-value">{{grandTotal}}</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Amount in Words -->
+        <div class="amount-in-words">
+            Amount in Words: {{amountInWords}}
+        </div>
+
+        <!-- Footer Information -->
+        <div class="qr-section">
+            <div>
+                <div style="font-size: 10px; color: #666; margin-bottom: 10px;">
+                    <strong>Prepared By:</strong> {{preparedBy}}<br>
+                    {{#if orderDate}}<strong>Date:</strong> {{orderDate}}{{/if}}
+                </div>
+            </div>
+
+            {{#if qrCode}}
+            <div class="qr-code">
+                <img src="{{qrCode}}" alt="QR Code" style="width: 100%; height: 100%; object-fit: contain;">
+            </div>
+            {{else}}
+            <div class="qr-code">QR Code</div>
+            {{/if}}
+
+            <div class="signature-block">
+                <div class="signature-line"></div>
+                <div class="signature-text">Authorized Signature</div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

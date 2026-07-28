@@ -1,0 +1,214 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Offer</title>
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 12px;
+            margin: 30px;
+            color: #000;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        .company {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #000;
+        }
+
+        th {
+            background: #efefef;
+            padding: 6px;
+        }
+
+        td {
+            padding: 6px;
+            vertical-align: top;
+        }
+
+        .info td {
+            border: none;
+            padding: 3px;
+        }
+
+        .right {
+            text-align: right;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .footer {
+            margin-top: 25px;
+        }
+
+        .signature {
+            margin-top: 50px;
+            text-align: right;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="company">
+        <h1>OFFER</h1>
+
+        <b>{{CompanyName}}</b><br />
+
+        {{CompanyAddress}}<br />
+
+        Phone : {{Phone}} |
+        Email : {{Email}}
+    </div>
+
+    <table class="info">
+
+        <tr>
+            <td><b>Customer</b></td>
+            <td>{{CustomerName}}</td>
+
+            <td><b>Offer No</b></td>
+            <td>{{OfferNo}}</td>
+        </tr>
+
+        <tr>
+            <td><b>Contact</b></td>
+            <td>{{ContactPerson}}</td>
+
+            <td><b>Date</b></td>
+            <td>{{OfferDate}}</td>
+        </tr>
+
+    </table>
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th width="5%">S.No</th>
+
+                <th>Description</th>
+
+                <th width="10%">Qty</th>
+
+                <th width="15%">Unit Price</th>
+
+                <th width="15%">Total</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            {{#each Items}}
+
+            <tr>
+
+                <td class="center">{{SNo}}</td>
+
+                <td>{{Description}}</td>
+
+                <td class="center">{{Qty}}</td>
+
+                <td class="right">{{Price}}</td>
+
+                <td class="right">{{Total}}</td>
+
+            </tr>
+
+            {{/each}}
+
+        </tbody>
+
+    </table>
+
+    <table style="margin-top:15px;">
+
+        <tr>
+
+            <td class="right"><b>Sub Total</b></td>
+
+            <td width="150">{{SubTotal}}</td>
+
+        </tr>
+
+        <tr>
+
+            <td class="right"><b>VAT (5%)</b></td>
+
+            <td>{{Vat}}</td>
+
+        </tr>
+
+        <tr>
+
+            <td class="right"><b>Grand Total</b></td>
+
+            <td><b>{{GrandTotal}}</b></td>
+
+        </tr>
+
+    </table>
+
+    <p>
+        <b>Amount in Words :</b>
+        {{AmountInWords}}
+    </p>
+
+    <p>
+        <b>Remarks :</b><br />
+
+        {{Remarks}}
+    </p>
+
+    <div class="footer">
+
+        <b>Terms & Conditions</b>
+
+        <ol>
+
+            <li>{{Term1}}</li>
+
+            <li>{{Term2}}</li>
+
+            <li>{{Term3}}</li>
+
+        </ol>
+
+    </div>
+
+    <div class="signature">
+
+        _______________________<br />
+
+        Authorized Signatory
+
+    </div>
+
+</body>
+</html>

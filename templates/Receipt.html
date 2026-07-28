@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{DocumentTitle}} - {{OfferNo}}</title>
+    <style>
+        :root {
+            --text-color: #231f20;
+            --muted-text: #4d4d4d;
+            --line-color: #000000;
+            --thin-line: #7f7f7f;
+            --header-bg: #58595b;
+            --header-text: #ffffff;
+            --title-color: #808285;
+            --leaf-green: #6ab04c;
+            --page-bg: #ffffff;
+            --outer-bg: #e9e9e9;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: var(--text-color);
+            background: var(--outer-bg);
+            padding: 24px;
+            font-size: 12.5px;
+            line-height: 1.45;
+        }
+
+        .sheet {
+            max-width: 950px;
+            margin: 0 auto;
+            background: var(--page-bg);
+            padding: 28px 36px 20px;
+        }
+
+        a {
+            color: #1155cc;
+        }
+
+        /* ================= HEADER ================= */
+        .doc-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            border-bottom: 3px solid var(--text-color);
+            padding-bottom: 8px;
+            margin-bottom: 14px;
+        }
+
+            .doc-header .brand img {
+                height: 50px;
+                display: block;
+            }
+
+            .doc-header .badges {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+
+                .doc-header .badges img {
+                    height: 56px;
+                    display: block;
+                }
+
+            .doc-header .doc-title {
+                font-family: Arial, Helvetica, sans-serif;
+                font-weight: 300;
+                font-size: 40px;
+                color: var(--title-color);
+                letter-spacing: 0.5px;
+            }
+
+        /* ================= TO / META INFO ================= */
+        .info-block {
+            display: flex;
+            justify-content: space-between;
+            gap: 24px;
+            border-bottom: 1px solid var(--thin-line);
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+
+            .info-block .to-address {
+                flex: 1.2;
+            }
+
+                .info-block .to-address .to-label {
+                    font-weight: bold;
+                }
+
+            .info-block .meta-table {
+                flex: 1;
+            }
+
+        .meta-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .meta-table td {
+            padding: 1px 4px;
+            vertical-align: top;
+            white-space: nowrap;
+        }
+
+            .meta-table td.label {
+                color: var(--text-color);
+                width: 42%;
+            }
+
+            .meta-table td.sep {
+                width: 12px;
+            }
+
+            .meta-table td.value {
+                white-space: normal;
+            }
+
+        .intro-line {
+            margin: 10px 0 14px;
+            font-size: 12.5px;
+        }
+
+        /* ================= ITEMS TABLE ================= */
+        table.items {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 0;
+        }
+
+            table.items thead th {
+                background: var(--header-bg);
+                color: var(--header-text);
+                font-size: 11.5px;
+                font-weight: bold;
+                text-align: center;
+                padding: 8px 6px;
+                border: 1px solid var(--header-bg);
+            }
+
+            table.items tbody td {
+                border: 1px solid var(--line-color);
+                padding: 8px 6px;
+                vertical-align: top;
+                font-size: 12px;
+            }
+
+            table.items td.num,
+            table.items th.num {
+                text-align: center;
+            }
+
+            table.items td.money,
+            table.items th.money {
+                text-align: right;
+            }
+
+            table.items td.desc-cell {
+                text-align: left;
+            }
+
+        /* ================= TOTALS (extends under last 2 columns) ================= */
+        .totals-wrap {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        table.totals {
+            width: 40%;
+            border-collapse: collapse;
+            margin-top: -1px;
+        }
+
+            table.totals td {
+                border: 1px solid var(--line-color);
+                border-top: none;
+                padding: 6px 8px;
+                font-size: 12px;
+            }
+
+            table.totals tr:first-child td {
+                border-top: 1px solid var(--line-color);
+            }
+
+            table.totals td.t-label {
+                text-align: left;
+            }
+
+            table.totals td.t-value {
+                text-align: right;
+                width: 40%;
+            }
+
+            table.totals tr.grand-total td {
+                font-weight: bold;
+            }
+
+        /* ================= NOTE LINES ================= */
+        .note-lines {
+            margin-top: 14px;
+        }
+
+            .note-lines p {
+                margin: 0;
+                padding: 5px 0;
+                border-bottom: 1px solid var(--thin-line);
+            }
+
+                .note-lines p b {
+                    font-weight: bold;
+                }
+
+        /* ================= TERMS ================= */
+        table.terms {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 14px 0;
+        }
+
+            table.terms caption {
+                background: var(--header-bg);
+                color: var(--header-text);
+                text-align: left;
+                font-weight: bold;
+                font-size: 12px;
+                padding: 6px 10px;
+                caption-side: top;
+            }
+
+            table.terms td {
+                border: 1px solid var(--line-color);
+                padding: 6px 10px;
+                font-size: 12px;
+            }
+
+                table.terms td.term-label {
+                    width: 18%;
+                    white-space: nowrap;
+                }
+
+        /* ================= NOTICES / LEGAL ================= */
+        .notice {
+            font-weight: bold;
+            font-size: 11.5px;
+            margin: 10px 0 6px;
+        }
+
+        .fine-print {
+            font-size: 11.5px;
+            margin: 0 0 8px;
+        }
+
+        .legal-remark {
+            font-family: "Courier New", Courier, monospace;
+            font-size: 10.5px;
+            line-height: 1.5;
+            margin: 8px 0 14px;
+            text-align: justify;
+        }
+
+        .safe-use-link {
+            text-align: center;
+            font-size: 12px;
+            margin: 6px 0 4px;
+        }
+
+        .footer-note {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            color: var(--muted-text);
+            border-bottom: 1px solid var(--text-color);
+            padding-bottom: 10px;
+            margin-bottom: 12px;
+        }
+
+        /* ================= FOOTER COMPANY BLOCKS ================= */
+        .doc-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 11.5px;
+        }
+
+            .doc-footer .company-block {
+                flex: 1;
+            }
+
+                .doc-footer .company-block strong {
+                    display: block;
+                    margin-bottom: 2px;
+                }
+
+            .doc-footer .website {
+                flex: 0 0 auto;
+                text-align: center;
+                font-size: 12px;
+                padding: 0 20px;
+            }
+
+        @media print {
+            body {
+                background: #fff;
+                padding: 0;
+            }
+
+            .sheet {
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="sheet">
+
+        <!-- ================= HEADER ================= -->
+        <header class="doc-header">
+            <div class="brand">
+                <img src="{{CompanyLogoUrl}}" alt="{{CompanyName}} logo">
+            </div>
+            <div class="badges">
+                <img src="{{QrCodeUrl}}" alt="QR Code">
+                <img src="{{PaperlessBadgeUrl}}" alt="Go Paperless">
+            </div>
+            <div class="doc-title">{{DocumentTitle}}</div>
+        </header>
+
+        <!-- ================= TO / META INFO ================= -->
+        <section class="info-block">
+            <div class="to-address">
+                <span class="to-label">To: {{CustomerName}}</span><br>
+                {{CustomerAddressLine1}}<br>
+                {{CustomerAddressLine2}}<br>
+                {{CustomerCity}}<br>
+                {{CustomerCountry}}<br>
+                Customer TRN:{{CustomerTRN}}
+            </div>
+            <div class="meta-table">
+                <table>
+                    <tr><td class="label">Ref No</td><td class="sep">:</td><td class="value">{{OfferNo}}</td></tr>
+                    <tr><td class="label">Date</td><td class="sep">:</td><td class="value">{{OfferDate}}</td></tr>
+                    <tr><td class="label">Cust. Ref.</td><td class="sep">:</td><td class="value">{{CustomerRef}}</td></tr>
+                    <tr><td class="label">Payment Terms</td><td class="sep">:</td><td class="value">{{PaymentTerms}}</td></tr>
+                    <tr><td class="label">TRN</td><td class="sep">:</td><td class="value">{{CompanyTRN}}</td></tr>
+                    <tr><td class="label">Delivery Date</td><td class="sep">:</td><td class="value">{{DeliveryDate}}</td></tr>
+                </table>
+            </div>
+        </section>
+
+        <p class="intro-line">
+            We thank you very much for your interest in {{CompanyName}} range of quality products &amp; services,
+            and are pleased to submit our offer for the following:
+        </p>
+
+        <!-- ================= ITEMS TABLE ================= -->
+        <table class="items">
+            <thead>
+                <tr>
+                    <th class="num">S.No.</th>
+                    <th>Item Description</th>
+                    <th class="num">Qty</th>
+                    <th class="num">Unit</th>
+                    <th class="money">Unit Price<br>({{Currency}})</th>
+                    <th class="money">Sub Total<br>({{Currency}})</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each Items}}
+                <tr>
+                    <td class="num">{{this.SNo}}</td>
+                    <td class="desc-cell">{{{this.Description}}}</td>
+                    <td class="num">{{this.Qty}}</td>
+                    <td class="num">{{this.Unit}}</td>
+                    <td class="money">{{this.UnitPrice}}</td>
+                    <td class="money">{{this.SubTotal}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+
+        <!-- ================= TOTALS ================= -->
+        <div class="totals-wrap">
+            <table class="totals">
+                <tr><td class="t-label">Total:</td><td class="t-value">{{Total}}</td></tr>
+                <tr><td class="t-label">Sub Total:</td><td class="t-value">{{SubTotal}}</td></tr>
+                <tr><td class="t-label">VAT {{VatPercent}}%:</td><td class="t-value">{{VatAmount}}</td></tr>
+                <tr class="grand-total"><td class="t-label">Grand Total:</td><td class="t-value">{{GrandTotal}}</td></tr>
+            </table>
+        </div>
+
+        <!-- ================= NOTE LINES ================= -->
+        <div class="note-lines">
+            <p><b>Amount in words:</b> {{AmountInWords}}</p>
+            <p><b>Remark:</b> {{Remark}}</p>
+            <p><b>Offer Prepared by:</b> {{PreparedBy}}</p>
+        </div>
+
+        <!-- ================= TERMS ================= -->
+        <table class="terms">
+            <caption>{{TermsSectionTitle}}</caption>
+            {{#each Terms}}
+            <tr>
+                <td class="term-label">{{this.Label}}</td>
+                <td>{{this.Value}}</td>
+            </tr>
+            {{/each}}
+        </table>
+
+        <p class="notice">{{CancellationNotice}}</p>
+        <p class="fine-print">{{InvoiceNote}}</p>
+        <div class="legal-remark">{{LegalRemark}}</div>
+
+        <p class="safe-use-link">
+            Please refer to &ldquo;Safe Use Instruction&rdquo; by visiting : <a href="{{SafeUseUrl}}">{{SafeUseUrl}}</a>
+        </p>
+
+        <div class="footer-note">
+            <span>{{ElectronicDocNote}}</span>
+            <span>{{FormReference}}</span>
+        </div>
+
+        <!-- ================= FOOTER COMPANY BLOCKS ================= -->
+        <footer class="doc-footer">
+            {{#each CompanyBranches}}
+            <div class="company-block">
+                <strong>{{this.EntityName}}</strong>
+                P.O.Box : {{this.POBox}}<br>
+                Tel : {{this.Tel}}<br>
+                Fax : {{this.Fax}}<br>
+                Email : {{this.Email}}
+            </div>
+            {{#if @first}}<div class="website"><a href="{{../CompanyWebsite}}">{{../CompanyWebsite}}</a></div>{{/if}}
+            {{/each}}
+        </footer>
+
+    </div>
+</body>
+</html>

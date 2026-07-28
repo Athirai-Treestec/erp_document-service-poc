@@ -1,0 +1,9 @@
+{
+    "ReceiptNo": "RCPT/202607/0042",
+    "Customer": "ABC",
+    "Date": "2026-07-27",
+    "Items": [
+        { "Description": "Invoice SI/202607/0001 payment", "Amount": 1000 }
+    ],
+    "AmountPaid": 1000
+}

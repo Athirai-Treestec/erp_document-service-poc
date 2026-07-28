@@ -1,0 +1,15 @@
+<html>
+<body>
+  <h1>Sales Invoice</h1>
+  <p><b>Invoice No:</b> {{InvoiceNo}}</p>
+  <p><b>Customer:</b> {{Customer}}</p>
+  <p><b>Date:</b> {{Date}}</p>
+  <table>
+    <tr><th>Item</th><th>Qty</th><th>Price</th><th>Amount</th></tr>
+    {{#each Items}}
+    <tr><td>{{Item}}</td><td>{{Qty}}</td><td>{{Price}}</td><td>{{Amount}}</td></tr>
+    {{/each}}
+  </table>
+  <p><b>Total:</b> {{Total}}</p>
+</body>
+</html>

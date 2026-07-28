@@ -1,0 +1,92 @@
+{
+  "CompanyName": "Carl Stahl",
+  "CompanyLogoUrl": "https://www.carlstahl.ae/images/logo.png",
+  "QrCodeUrl": "https://www.carlstahl.ae/images/qr-placeholder.png",
+  "PaperlessBadgeUrl": "https://www.carlstahl.ae/images/go-paperless-badge.png",
+  "DocumentTitle": "Offer",
+
+  "CustomerName": "ABU DHABI NATIONAL PAPER MILL/ADNPM",
+  "CustomerAddressLine1": "PO BOX : 27683",
+  "CustomerAddressLine2": "",
+  "CustomerCity": "Abu Dhabi",
+  "CustomerCountry": "United Arab Emirates",
+  "CustomerTRN": "100512835800003",
+
+  "OfferNo": "QN/2026/00068",
+  "OfferDate": "17/07/2026",
+  "CustomerRef": "LPO (JULY) 2026 Final",
+  "PaymentTerms": "Cash",
+  "CompanyTRN": "100056202300003",
+  "DeliveryDate": "31/07/2026",
+
+  "Currency": "UAE Dirhams",
+
+  "Items": [
+    {
+      "SNo": 1,
+      "Description": "11MM DIA, 19X07 WSC GALVANIZED STEEL WIRE ROPE, NON ROTATING, 1960 GRADE, RHOL, LUBRICATED, WITH PLAIN ENDS. MBL: 84kN<br>First End<br>Last End",
+      "Qty": "1.00",
+      "Unit": "Mtr.",
+      "UnitPrice": "9.70",
+      "SubTotal": "9.70"
+    }
+  ],
+
+  "Total": "9.70",
+  "SubTotal": "9.70",
+  "VatPercent": "5",
+  "VatAmount": "0.48",
+  "GrandTotal": "10.18",
+
+  "AmountInWords": " AED Ten and Fils Eighteen only",
+  "Remark": " Comments Test Graph APi - soa, email jobs also completed (final local testing )",
+  "PreparedBy": "ERP J Admin",
+
+  "TermsSectionTitle": "Terms & Conditions",
+
+  "Terms": [
+    {
+      "Label": "Certificate",
+      "Value": "Carl Stahl certificate will be provided with the supplied material."
+    },
+    {
+      "Label": "Validity:",
+      "Value": "1 Week from date of offer"
+    },
+    {
+      "Label": "Availability:",
+      "Value": "Ex-stock, strictly subject to prior sales."
+    },
+    {
+      "Label": "Delivery:",
+      "Value": ""
+    }
+  ],
+
+  "CancellationNotice": "Note: The above material will be manufactured and/or procured specifically against your order. Accordingly, the order is strictly non-cancellable, and the supplied items are non-returnable.",
+  "InvoiceNote": "Net invoice amount shall be credited and any bank charges are to be borne by the customer.",
+  "LegalRemark": "REMARK: Any dispute, difference, controversy, or claim arising out of or in connection with this offer, invoice, purchase order, supply of goods, or related contract — including questions regarding its existence, validity, interpretation, performance, termination, or remedies — shall be governed by the laws of the United Arab Emirates and subject to the exclusive jurisdiction of the Courts of the United Arab Emirates.",
+
+  "SafeUseUrl": "https://www.carlstahl.ae/Safe-Use.html",
+  "ElectronicDocNote": "*** This is an electronically generated document and does not require signature ***",
+  "FormReference": "FRM-CS-19, ISSUE#1, 02-01-2019",
+
+  "CompanyWebsite": "https://www.carlstahl.ae",
+
+  "CompanyBranches": [
+    {
+      "EntityName": "Carl Stahl Lifting Equipment Industries LLC",
+      "POBox": "26607 Dubai, UAE",
+      "Tel": "+971-4-333 3494",
+      "Fax": "+971-4-333 3489",
+      "Email": "Dubai@CarlStahl.ae"
+    },
+    {
+      "EntityName": "Carl Stahl Lifting Equipment Trading LLC",
+      "POBox": "92607 Abu Dhabi, UAE",
+      "Tel": "+971-2-550 4443",
+      "Fax": "+971-2-550 4434",
+      "Email": "AbuDhabi@CarlStahl.ae"
+    }
+  ]
+}
