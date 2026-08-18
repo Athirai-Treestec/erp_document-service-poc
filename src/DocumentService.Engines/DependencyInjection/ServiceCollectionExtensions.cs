@@ -39,7 +39,7 @@ public static class ServiceCollectionExtensions
 
         // Print pipeline
         services.AddSingleton<ITemplateService, HtmlTemplateService>();
-        services.AddSingleton<IPrintRenderer, PdfPrintRenderer>();
+        services.AddSingleton<IPrintRenderer, ChromiumPdfPrintRenderer>();
         services.AddSingleton<IPrintRenderer, WordPrintRenderer>();
         services.AddSingleton<IPrintRendererFactory, PrintRendererFactory>();
         services.AddSingleton<IPrintService, PrintService>();

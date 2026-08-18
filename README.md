@@ -121,15 +121,18 @@ Printing has two independent concerns, each replaceable on its own:
   `{{#each Items}}...{{/each}}` repeating blocks. This is intentionally a
   minimal templating engine — swapping in the real Certificate Designer
   engine later means replacing only this class.
-- **`IPrintRenderer`** (`PdfPrintRenderer`, `WordPrintRenderer`) turns the
-  merged HTML into a final PDF or DOCX. QuestPDF and the Open XML SDK are
-  not HTML renderers, so a small internal `SimpleHtmlParser`
-  (`Print/Internal/`) reads the merged HTML's `<h1-3>`, `<p>`, and
-  `<table>` elements into a tiny block model both renderers lay out. This
-  is a known, intentional POC simplification — it is not a general
-  HTML-to-PDF engine, only enough to prove the "template → render → file"
-  architecture. Replacing it with the existing Render-PDF renderer or a
-  real HTML engine only means implementing `IPrintRenderer` again.
+- **`IPrintRenderer`** has two implementations:
+  - `ChromiumPdfPrintRenderer` (PDF) hands the merged HTML straight to a
+    headless Chromium instance via **PuppeteerSharp** (MIT, free at any
+    scale) and reads back real PDF bytes. The browser does 100% of the
+    HTML/CSS layout — grid, flexbox, colors, `@media print`, `data:` URI
+    images, and `https://` images all render exactly as authored. There is
+    no custom parsing or layout code in this path.
+  - `WordPrintRenderer` (DOCX) still uses the Open XML SDK, which is not an
+    HTML renderer, so it goes through the small internal `SimpleHtmlParser`
+    (`Print/Internal/`) that reads only `<h1-3>`, `<p>`, and `<table>` into
+    a tiny block model. This is a known, intentional POC simplification for
+    the *Word* output only — not a general HTML-to-Word engine.
 - `PrintResult.PreviewHtml` carries the merged HTML back so a caller can
   render an on-screen preview before committing to a PDF/Word render —
   covers the "Preview (optional)" requirement without extra plumbing.
